@@ -51,7 +51,9 @@ export class JogadoresService {
   }
 
   async deletarJogador(_id): Promise<any> {
-    const jogadorEncontrado = this.jogadorModel.findOne({ _id }).exec();
+    
+    const jogadorEncontrado = await this.jogadorModel.findOne({ _id }).exec();
+    console.log(jogadorEncontrado);
     if (!jogadorEncontrado)
       throw new NotFoundException('Não foi Possivel Atualizar Jogador');
     return await this.jogadorModel.deleteOne({ _id }).exec();
